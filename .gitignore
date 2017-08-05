@@ -24,6 +24,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+figures/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -86,6 +87,9 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+virtual_MCMC/
+venv2
+compvenv
 
 # Spyder project settings
 .spyderproject
@@ -99,3 +103,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Pip stuff
+Pipfile
+Pipfile.lock
+
+#Git stuff
+.gitignore
+
+# Pycharm
+.idea/
