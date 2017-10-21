@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
-import src.TherapeuticTouch.JAGS as jg
-import src.TherapeuticTouch.STAN as st
+from .JAGS import TT_JAGS as jg
+from .STAN import TT_STAN as st
+# import src.TherapeuticTouch.JAGS as jg
+# import src.TherapeuticTouch.STAN as st
 
 import time
 import matplotlib.pyplot as plt
