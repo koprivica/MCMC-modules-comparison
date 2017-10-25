@@ -116,7 +116,7 @@ def main():
     fig.set_facecolor('w')
     plt.tight_layout()
     plt.show()
-    plt.savefig('../figures/Therapeutic-Touch_THETA.png')
+    plt.savefig('./figures/Therapeutic-Touch_THETA.png')
 
 
     '''OMEGA - KAPPA'''
@@ -164,7 +164,7 @@ def main():
 
     plt.tight_layout()
     plt.show()
-    plt.savefig('../figures/Therapeutic-Touch_OMEGA-KAPPA.png')
+    plt.savefig('./figures/Therapeutic-Touch_OMEGA-KAPPA.png')
 
 
     '''T-test on samples'''
