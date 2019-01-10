@@ -12,7 +12,7 @@ import scipy
 
 def main():
     # Data - Creating Panas Data frame with two columns
-    my_data = pd.read_csv("./data/TherapeuticTouchData.csv", dtype={'y': '<i4', 's': 'category'})
+    my_data = pd.read_csv("../data/TherapeuticTouchData.csv", dtype={'y': '<i4', 's': 'category'})
 
     y = my_data.y
 
@@ -116,7 +116,7 @@ def main():
     fig.set_facecolor('w')
     plt.tight_layout()
     plt.show()
-    plt.savefig('./figures/Therapeutic-Touch_THETA.png')
+    plt.savefig('../figures/Therapeutic-Touch_THETA.png')
 
 
     '''OMEGA - KAPPA'''
@@ -164,7 +164,7 @@ def main():
 
     plt.tight_layout()
     plt.show()
-    plt.savefig('./figures/Therapeutic-Touch_OMEGA-KAPPA.png')
+    plt.savefig('../figures/Therapeutic-Touch_OMEGA-KAPPA.png')
 
 
     '''T-test on samples'''
@@ -181,6 +181,6 @@ def main():
     stan_theta28 = stan.samples.extract(permuted=True)['theta'][:, 27]
     pymc_theta28 = pymc.samples['theta'][:, 27][1000::20]
 
-    jags_stan28 =scipy.stats.ttest_ind(jags_theta28, stan_theta28, axis=0, equal_var=False)
+    jags_stan28 = scipy.stats.ttest_ind(jags_theta28, stan_theta28, axis=0, equal_var=False)
     jags_pymc28 = scipy.stats.ttest_ind(jags_theta28, pymc_theta28, axis=0, equal_var=False)
     stan_pymc28 = scipy.stats.ttest_ind(stan_theta28, pymc_theta28, axis=0, equal_var=False)
