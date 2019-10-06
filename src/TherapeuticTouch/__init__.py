@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import itertools
 import scipy
 
-def main():
+def main(fileNumber):
     # Data - Creating Panas Data frame with two columns
     my_data = pd.read_csv("../data/TherapeuticTouchData.csv", dtype={'y': '<i4', 's': 'category'})
 
@@ -184,3 +184,26 @@ def main():
     jags_stan28 = scipy.stats.ttest_ind(jags_theta28, stan_theta28, axis=0, equal_var=False)
     jags_pymc28 = scipy.stats.ttest_ind(jags_theta28, pymc_theta28, axis=0, equal_var=False)
     stan_pymc28 = scipy.stats.ttest_ind(stan_theta28, pymc_theta28, axis=0, equal_var=False)
+
+    '''Save results to file'''
+
+    import csv
+
+    np.savetxt('../results/jags_' + fileNumber + '.csv', (itertools.chain.from_iterable(jags.samples['theta'][0, :]), itertools.chain.from_iterable(jags.samples['theta'][1, :]), itertools.chain.from_iterable(jags.samples['theta'][2, :])), delimiter=',')
+
+    np.savetxt('../results/stan_' + fileNumber + '.csv', (stan.samples.extract(permuted=True)['theta'][:, 0], stan.samples.extract(permuted=True)['theta'][:, 1], stan.samples.extract(permuted=True)['theta'][:, 2]), delimiter=',')
+
+    np.savetxt('../results/pymc_' + fileNumber + '.csv', (pymc.samples['theta'][:, 0][1000::20], pymc.samples['theta'][:, 1][1000::20], pymc.samples['theta'][:, 2][1000::20]), delimiter=',')
+
+
+    # jags_f = open("../results/jags_" + fileNumber + ".csv", "w+")
+    #
+    # jags_f.close()
+    #
+    # stan_f = open("../results/stan_" + fileNumber + ".csv", "w+")
+    #
+    # stan_f.close()
+    #
+    # pymc_f = open("../results/pymc_" + fileNumber + ".csv", "w+")
+    #
+    # pymc_f.close()
