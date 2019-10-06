@@ -36,7 +36,7 @@ def main():
         ThetaI, initList = [0] * len(groupCount), [0] * len(groupCount)
 
         for ss in range(0, len(groupCount)):
-            initList[ss] = np.random.choice((my_data.y[my_data.s == ss]).as_matrix(), size=groupCount[ss], replace=True,
+            initList[ss] = np.random.choice((my_data.y[my_data.s == ss]).values, size=groupCount[ss], replace=True,
                                             p=None)
             ThetaI[ss] = sum(initList[ss]) / len(initList[ss])
             ThetaI[ss] = 0.001 + 0.998 * ThetaI[ss]  # keep away from 0,1
@@ -83,11 +83,11 @@ def main():
 
     ax0 = fig.add_subplot(3, 2, 1)
     ax0.set_title('theta 1')
-    ax0.hist(list(itertools.chain.from_iterable(jags.samples['theta'][0, :])), bins, alpha=0.5, ec='white', normed=1)
+    ax0.hist(list(itertools.chain.from_iterable(jags.samples['theta'][0, :])), bins, alpha=0.5, ec='white', density=1)
 
     ax01 = fig.add_subplot(3, 2, 2)
     ax01.set_title('theta 28')
-    ax01.hist(list(itertools.chain.from_iterable(jags.samples['theta'][27, :])), bins, alpha=0.5, ec='white', normed=1)
+    ax01.hist(list(itertools.chain.from_iterable(jags.samples['theta'][27, :])), bins, alpha=0.5, ec='white', density=1)
 
     big_axes[1].set_title("STAN : {} seconds".format(time4 - time3), fontsize=16)
     big_axes[1].tick_params(labelcolor=(1., 1., 1., 0.0), top='off', bottom='off', left='off', right='off')
@@ -95,11 +95,11 @@ def main():
 
     ax1 = fig.add_subplot(3, 2, 3)
     ax1.set_title('theta 1')
-    ax1.hist(stan.samples.extract(permuted=True)['theta'][:, 0], bins, alpha=0.5, ec='white', normed=1)
+    ax1.hist(stan.samples.extract(permuted=True)['theta'][:, 0], bins, alpha=0.5, ec='white', density=1)
 
     ax11 = fig.add_subplot(3, 2, 4)
     ax11.set_title('theta 28')
-    ax11.hist(stan.samples.extract(permuted=True)['theta'][:, 27], bins, alpha=0.5, ec='white', normed=1)
+    ax11.hist(stan.samples.extract(permuted=True)['theta'][:, 27], bins, alpha=0.5, ec='white', density=1)
 
     big_axes[2].set_title("PYMC3 : {} seconds".format(time6 - time5), fontsize=16)
     big_axes[2].tick_params(labelcolor=(1., 1., 1., 0.0), top='off', bottom='off', left='off', right='off')
@@ -107,11 +107,11 @@ def main():
 
     ax2 = fig.add_subplot(3, 2, 5)
     ax2.set_title('theta 1')
-    ax2.hist(pymc.samples['theta'][:, 0][1000::20], bins, alpha=0.5, ec='white', normed=1)
+    ax2.hist(pymc.samples['theta'][:, 0][1000::20], bins, alpha=0.5, ec='white', density=1)
 
     ax21 = fig.add_subplot(3, 2, 6)
     ax21.set_title('theta 28')
-    ax21.hist(pymc.samples['theta'][:, 27][1000::20], bins, alpha=0.5, ec='white', normed=1)
+    ax21.hist(pymc.samples['theta'][:, 27][1000::20], bins, alpha=0.5, ec='white', density=1)
 
     fig.set_facecolor('w')
     plt.tight_layout()
@@ -130,12 +130,12 @@ def main():
 
     ax0 = fig1.add_subplot(3, 2, 1)
     ax0.hist(np.concatenate(list(itertools.chain.from_iterable(jags.samples['omega'][:])), axis=0), bins, alpha=0.5,
-             ec='white', normed=1)
+             ec='white', density=1)
     ax0.set_title('omega')
 
     ax01 = fig1.add_subplot(3, 2, 2)
     ax01.hist(np.concatenate(list(itertools.chain.from_iterable(jags.samples['kappa'][:])), axis=0), bins2, alpha=0.5,
-              ec='white', normed=1)  # FIX BEANS
+              ec='white', density=1)  # FIX BEANS
     ax01.set_title('kappa')
 
     big_axes1[1].set_title("STAN", fontsize=16)
@@ -143,11 +143,11 @@ def main():
     big_axes1[1]._frameon = False
 
     ax1 = fig1.add_subplot(3, 2, 3)
-    ax1.hist(stan.samples.extract(permuted=True)['omega'][:], bins, alpha=0.5, ec='white', normed=1)
+    ax1.hist(stan.samples.extract(permuted=True)['omega'][:], bins, alpha=0.5, ec='white', density=1)
     ax1.set_title('omega')
 
     ax11 = fig1.add_subplot(3, 2, 4)
-    ax11.hist(stan.samples.extract(permuted=True)['kappa'][:], bins2, alpha=0.5, ec='white', normed=1)
+    ax11.hist(stan.samples.extract(permuted=True)['kappa'][:], bins2, alpha=0.5, ec='white', density=1)
     ax11.set_title('kappa')
 
     big_axes1[2].set_title("PYMC3", fontsize=16)
@@ -155,11 +155,11 @@ def main():
     big_axes1[2]._frameon = False
 
     ax2 = fig1.add_subplot(3, 2, 5)
-    ax2.hist(pymc.samples['omega'][:][1000::20], bins, alpha=0.5, ec='white', normed=1)
+    ax2.hist(pymc.samples['omega'][:][1000::20], bins, alpha=0.5, ec='white', density=1)
     ax2.set_title('omega')
 
     ax21 = fig1.add_subplot(3, 2, 6)
-    ax21.hist(pymc.samples['kappa'][:][1000::20], bins2, alpha=0.5, ec='white', normed=1)
+    ax21.hist(pymc.samples['kappa'][:][1000::20], bins2, alpha=0.5, ec='white', density=1)
     ax21.set_title('kappa')
 
     plt.tight_layout()
