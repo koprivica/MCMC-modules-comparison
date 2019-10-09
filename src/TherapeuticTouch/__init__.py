@@ -189,12 +189,132 @@ def main(fileNumber):
 
     import csv
 
-    np.savetxt('../results/jags_' + fileNumber + '.csv', (itertools.chain.from_iterable(jags.samples['theta'][0, :]), itertools.chain.from_iterable(jags.samples['theta'][1, :]), itertools.chain.from_iterable(jags.samples['theta'][2, :])), delimiter=',')
+    ''' JAGS '''
+    np.savetxt('../results/jags/theta/test_' + str(fileNumber) + '.csv', np.c_[list(itertools.chain.from_iterable(jags.samples['theta'][0, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][1, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][2, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][3, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][4, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][5, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][6, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][7, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][8, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][9, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][10, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][11, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][12, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][13, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][14, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][15, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][16, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][17, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][18, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][19, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][20, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][21, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][22, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][23, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][24, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][25, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][26, :])),
+                                                               list(itertools.chain.from_iterable(jags.samples['theta'][27, :])) #,
+                                                               # list(itertools.chain.from_iterable(jags.samples['omega'][:])),
+                                                               # list(itertools.chain.from_iterable(jags.samples['kappa'][:]))
+                                                               ],
+               header="theta1,theta2,theta3,theta4,theta5,theta6,theta7,theta8,theta9,theta10,theta11,theta12,theta13,theta14,theta15,theta16,theta17,theta18,theta19,theta20,theta21,theta22,theta23,theta24,theta25,theta26,theta27", # ,omega,kappa",
+               delimiter=',',comments='')
 
-    np.savetxt('../results/stan_' + fileNumber + '.csv', (stan.samples.extract(permuted=True)['theta'][:, 0], stan.samples.extract(permuted=True)['theta'][:, 1], stan.samples.extract(permuted=True)['theta'][:, 2]), delimiter=',')
+    np.savetxt('../results/jags/omega/test_' + str(fileNumber) + '.csv', np.c_[list(itertools.chain.from_iterable(jags.samples['omega'][:]))],header="omega",delimiter=',',comments='')
 
-    np.savetxt('../results/pymc_' + fileNumber + '.csv', (pymc.samples['theta'][:, 0][1000::20], pymc.samples['theta'][:, 1][1000::20], pymc.samples['theta'][:, 2][1000::20]), delimiter=',')
+    np.savetxt('../results/jags/kappa/test_' + str(fileNumber) + '.csv', np.c_[list(itertools.chain.from_iterable(jags.samples['kappa'][:]))],header="kappa",delimiter=',',comments='')
 
+    ''' STAN '''
+
+    np.savetxt('../results/stan/theta/test_' + str(fileNumber) + '.csv', np.c_[stan.samples.extract(permuted=True)['theta'][:, 0],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 1],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 2],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 3],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 4],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 5],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 6],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 7],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 8],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 9],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 10],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 11],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 12],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 13],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 14],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 15],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 16],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 17],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 18],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 19],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 20],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 21],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 22],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 23],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 24],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 25],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 26],
+                                                                  stan.samples.extract(permuted=True)['theta'][:, 27] #,
+                                                                  # stan.samples.extract(permuted=True)['omega'][:],
+                                                                  # stan.samples.extract(permuted=True)['kappa'][:]
+                                                               ],
+               header="theta1,theta2,theta3,theta4,theta5,theta6,theta7,theta8,theta9,theta10,theta11,theta12,theta13,theta14,theta15,theta16,theta17,theta18,theta19,theta20,theta21,theta22,theta23,theta24,theta25,theta26,theta27", #,omega,kappa",
+               delimiter=',',comments='')
+
+    np.savetxt('../results/stan/omega/test_' + str(fileNumber) + '.csv',
+               np.c_[stan.samples.extract(permuted=True)['omega'][:]], header="omega", delimiter=',',
+               comments='')
+
+    np.savetxt('../results/stan/kappa/test_' + str(fileNumber) + '.csv',
+               np.c_[stan.samples.extract(permuted=True)['kappa'][:]], header="kappa", delimiter=',',
+               comments='')
+
+    ''' PYMC '''
+
+    np.savetxt('../results/pymc/theta/test_' + str(fileNumber) + '.csv', np.c_[pymc.samples['theta'][:, 0][1000::20],
+                                                               pymc.samples['theta'][:, 1][1000::20],
+                                                               pymc.samples['theta'][:, 2][1000::20],
+                                                               pymc.samples['theta'][:, 3][1000::20],
+                                                               pymc.samples['theta'][:, 4][1000::20],
+                                                               pymc.samples['theta'][:, 5][1000::20],
+                                                               pymc.samples['theta'][:, 6][1000::20],
+                                                               pymc.samples['theta'][:, 7][1000::20],
+                                                               pymc.samples['theta'][:, 8][1000::20],
+                                                               pymc.samples['theta'][:, 9][1000::20],
+                                                               pymc.samples['theta'][:, 10][1000::20],
+                                                               pymc.samples['theta'][:, 11][1000::20],
+                                                               pymc.samples['theta'][:, 12][1000::20],
+                                                               pymc.samples['theta'][:, 13][1000::20],
+                                                               pymc.samples['theta'][:, 14][1000::20],
+                                                               pymc.samples['theta'][:, 15][1000::20],
+                                                               pymc.samples['theta'][:, 16][1000::20],
+                                                               pymc.samples['theta'][:, 17][1000::20],
+                                                               pymc.samples['theta'][:, 18][1000::20],
+                                                               pymc.samples['theta'][:, 19][1000::20],
+                                                               pymc.samples['theta'][:, 20][1000::20],
+                                                               pymc.samples['theta'][:, 21][1000::20],
+                                                               pymc.samples['theta'][:, 22][1000::20],
+                                                               pymc.samples['theta'][:, 23][1000::20],
+                                                               pymc.samples['theta'][:, 24][1000::20],
+                                                               pymc.samples['theta'][:, 25][1000::20],
+                                                               pymc.samples['theta'][:, 26][1000::20],
+                                                               pymc.samples['theta'][:, 27][1000::20] #,
+                                                               # pymc.samples['omega'][:][1000::20],
+                                                               # pymc.samples['kappa'][:][1000::20]
+                                                               ],
+               header="theta1,theta2,theta3,theta4,theta5,theta6,theta7,theta8,theta9,theta10,theta11,theta12,theta13,theta14,theta15,theta16,theta17,theta18,theta19,theta20,theta21,theta22,theta23,theta24,theta25,theta26,theta27", #,omega,kappa",
+               delimiter=',',comments='')
+
+    np.savetxt('../results/pymc/omega/test_' + str(fileNumber) + '.csv',
+               np.c_[pymc.samples['omega'][:][1000::20]], header="omega", delimiter=',',
+               comments='')
+
+    np.savetxt('../results/pymc/kappa/test_' + str(fileNumber) + '.csv',
+               np.c_[pymc.samples['kappa'][:][1000::20]], header="kappa", delimiter=',',
+               comments='')
 
     # jags_f = open("../results/jags_" + fileNumber + ".csv", "w+")
     #
