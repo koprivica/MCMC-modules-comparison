@@ -89,6 +89,7 @@ venv/
 ENV/
 virtual_MCMC/
 venv2
+compvenv
 
 # Spyder project settings
 .spyderproject
