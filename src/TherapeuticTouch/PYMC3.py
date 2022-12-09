@@ -17,4 +17,4 @@ class TT_PYMC3:
 
             self.z = pm.Binomial('z', p=theta, n=np.array(N), observed=np.array(zz))
 
-            self.samples = pm.sample(133666, step=pm.NUTS(), njobs=3, random_seed=-1, progressbar=False)
+            self.samples = pm.sample(draws=133333, step=pm.NUTS(), cores=3, tune=1000, random_seed=-1, progressbar=False)

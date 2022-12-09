@@ -1,3 +1,4 @@
 import TherapeuticTouch as tt
 
-tt.main()
+for iteration in range (0, 100):
+    tt.main(iteration)
