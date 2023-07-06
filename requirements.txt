@@ -4,7 +4,7 @@
 ###### Requirements without Version Specifiers ######
 pandas==0.23.4
 matplotlib==3.2.1
-scipy==1.1.0
+scipy==1.10.0
 
 ###### Requirements for MCMC modules ######
 pyjags==1.2.2
